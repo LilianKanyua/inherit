@@ -1,23 +1,22 @@
 fun main() {
-    var car = Car("Nissan", "matatu", "teal", 30)
+    var car = Car("Subaru", "Legacy", "teal", 30)
     car.carry(35)
     car.identity()
-    var result=car.calculateParkingFees(20)
-    println(result)
+    println(car.calculateParkingFees(30))
 
-    var bus=Bus("Toyota","mini","red",40)
+
+    var bus=Bus("Nissan","matatu","red",40)
     bus.carry(40)
     bus.identity()
-    var busFees=bus.calculateParkingFees(25)
-    println(busFees)
-   val busMax= bus.maxTripFare(100.00)
-    println(busMax)
+   println(bus.calculateParkingFees(25))
+   println( bus.maxTripFare(100.00))
+
 }
 
 
 open class Car(var make:String, var model:String,var color:String,var capacity:Int) {
     fun carry(people: Int) {
-        var x = people-capacity
+        var x = people - capacity
         if (people <= capacity) {
             println("Carrying $people passengers")
         } else {
@@ -25,18 +24,27 @@ open class Car(var make:String, var model:String,var color:String,var capacity:I
         }
     }
 
-    fun identity(){
+    fun identity() {
         println("I am a $color $make $model")
     }
-      fun calculateParkingFees(hours:Int):Int{
+
+
+    open fun calculateParkingFees(hours: Int): Int {
         var fees=hours*10
-          return fees
+        return fees
     }
- }
-class Bus(make:String,model: String,color: String,capacity: Int):Car(make,model,color,capacity){
-    fun maxTripFare(fare:Double):Double{
-        var max=fare*capacity
-        return max
-    }
+
 }
+ class Bus( make:String,model: String,color: String,capacity: Int):Car(make,model,color,capacity) {
+    override fun calculateParkingFees(hours: Int): Int {
+         var busFees = hours * capacity
+         return busFees
+     }
+
+     fun maxTripFare(fare: Double): Double {
+         var max = fare * capacity
+         return max
+     }
+ }
+
 
