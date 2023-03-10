@@ -10,6 +10,8 @@ fun main() {
     bus.identity()
     var busFees=bus.calculateParkingFees(25)
     println(busFees)
+   val busMax= bus.maxTripFare(100.00)
+    println(busMax)
 }
 
 
@@ -32,6 +34,9 @@ open class Car(var make:String, var model:String,var color:String,var capacity:I
     }
  }
 class Bus(make:String,model: String,color: String,capacity: Int):Car(make,model,color,capacity){
-    
+    fun maxTripFare(fare:Double):Double{
+        var max=fare*capacity
+        return max
+    }
 }
 
